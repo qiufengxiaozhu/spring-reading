@@ -12,11 +12,8 @@ import java.io.InputStream;
  **/
 public class InputStreamResourceDemo {
     public static void main(String[] args) throws Exception {
-        InputStream isSource = new ByteArrayInputStream("hello world".getBytes());
+        InputStream isSource = new ByteArrayInputStream("hello world3".getBytes());
         Resource resource = new InputStreamResource(isSource);
-        try (InputStream is = resource.getInputStream()) {
-            // 读取和处理资源内容
-            System.out.println(new String(is.readAllBytes()));
-        }
+        InputStreamUtil.getInputStream(resource);
     }
 }

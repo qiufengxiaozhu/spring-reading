@@ -2,7 +2,7 @@ package com.xcs.spring;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.util.List;
+import java.util.Collections;
 
 /**
  * 自定义的 InvocationHandler 实现类，用于处理 Java 动态代理的方法调用。
@@ -31,7 +31,8 @@ class MyInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // 创建 MyReflectiveMethodInvocation 对象，用于执行方法调用链
-        MyReflectiveMethodInvocation invocation = new MyReflectiveMethodInvocation(proxy, target, method, args, target.getClass(), List.of(new MyMethodInterceptor()));
+        MyReflectiveMethodInvocation invocation = new MyReflectiveMethodInvocation(proxy, target, method, args, target.getClass(),
+                Collections.singletonList((new MyMethodInterceptor())));
         // 执行方法调用链，并返回结果
         return invocation.proceed();
     }
